@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="./login.html">
+        <!-- ...existing code... -->
+    <form id="loginForm" action="./login.html">
+        <label for="email">email:</label>
+        <input id="email" type="email" required placeholder="enter correct email address"><br><br>
+
+        <label for="password">password</label>
+        <input id="password" type="password" required placeholder="enter correct password"><br><br>
+        <input id="loginBtn" type="submit" value="login" disabled>
+        <input type="reset" value="cancel">
+    </form>
+    <script>
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+
+        function validate() {
+            const emailValid = emailInput.validity.valid;
+            const passwordValid = passwordInput.value.length > 0;
+            loginBtn.disabled = !(emailValid && passwordValid);
+        }
+
+        emailInput.addEventListener('input', validate);
+        passwordInput.addEventListener('input', validate);
+
+        // Optional: Reset disables login button
+        document.getElementById('loginForm').addEventListener('reset', () => {
+            setTimeout(validate, 0);
+        });
+
+        // Initial validation
+        validate();
+    </script>
+<!-- ...existing code... -->
+    </form>
+    
+</body>
+</html>
